@@ -19,7 +19,6 @@ public static class DependencyInjection
             .AddSwaggerGen()
             .AddCarter()
             .AddTransient<AnimalMapper>()
-            .AddSingleton<IFibonacci, Fibonacci>()
             .AddSingleton<IAnimalRepository, AnimalRepository>()
             .AddSingleton<IAnimalService, AnimalService>()
             .AddSingleton(_ =>
