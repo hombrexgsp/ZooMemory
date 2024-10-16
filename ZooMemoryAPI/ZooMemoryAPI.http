@@ -1,0 +1,6 @@
+@ZooMemoryAPI_HostAddress = http://localhost:5105
+
+GET {{ZooMemoryAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
