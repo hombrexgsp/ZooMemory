@@ -1,7 +1,5 @@
 ﻿using MongoDB.Driver;
-using ZooMemoryAPI.Domain.Animal;
 using ZooMemoryAPI.Domain.Entity;
-using Optional = MongoDB.Driver.Optional;
 
 namespace ZooMemoryAPI.Repository;
 
@@ -13,17 +11,15 @@ public interface IAnimalRepository
     Task<Boolean> DeleteAsync(Guid id);
 }
 
-public class AnimalRepository(IMongoCollection<AnimalEntity> animalCollection): IAnimalRepository
+public class AnimalRepository(IMongoCollection<AnimalEntity> animalCollection) : IAnimalRepository
 {
     public async Task<IEnumerable<AnimalEntity>> GetAllAsync() =>
         await animalCollection.Find(_ => true).ToListAsync();
 
-    
     public async Task<AnimalEntity?> GetAsync(Guid uuid) =>
         await animalCollection
             .Find(a => a.Uuid == uuid)
             .SingleOrDefaultAsync();
-
 
     public async Task<AnimalEntity> CreateAsync(AnimalEntity createAnimal)
     {
@@ -33,7 +29,6 @@ public class AnimalRepository(IMongoCollection<AnimalEntity> animalCollection): 
             .SingleOrDefaultAsync();
     }
 
-    
     public async Task<Boolean> DeleteAsync(Guid id) =>
         await animalCollection
             .DeleteOneAsync(a => a.Uuid == id)

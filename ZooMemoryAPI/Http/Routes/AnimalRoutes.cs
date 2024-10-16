@@ -1,7 +1,4 @@
-﻿using System.Reactive.Linq;
-using System.Reactive.Threading.Tasks;
-using Carter;
-using Microsoft.AspNetCore.Http.HttpResults;
+﻿using Carter;
 using ZooMemoryAPI.Domain.Animal;
 using ZooMemoryAPI.Service;
 
@@ -23,10 +20,9 @@ public class AnimalRoutes(IAnimalService animalService) : CarterModule("/animals
 
             return Results.Created($"/{result.Uuid}", result);
         });
-        
+
         builder.MapDelete("/{id:guid}", async (Guid id) => await animalService.DeleteAnimalAsync(id)
             ? Results.NoContent()
             : Results.NotFound());
-        
     }
 }

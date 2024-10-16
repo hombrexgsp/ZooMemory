@@ -1,6 +1,5 @@
 ﻿using Carter;
 using MongoDB.Driver;
-using ZooMemoryAPI.Domain.Config;
 using ZooMemoryAPI.Domain.Entity;
 using ZooMemoryAPI.Mapper;
 using ZooMemoryAPI.Repository;
@@ -29,7 +28,6 @@ public static class DependencyInjection
                 var mongoClient = new MongoClient(config);
                 var mongoDatabase = mongoClient.GetDatabase(database);
                 return mongoDatabase.GetCollection<AnimalEntity>("animals");
-
             })
             .AddSingleton<IAnimalRepository, AnimalRepository>();
     }

@@ -1,9 +1,8 @@
 ﻿using ZooMemoryAPI.Domain.Animal;
-using ZooMemoryAPI.Mapper;
-using ZooMemoryAPI.Repository;
-
 using ZooMemoryAPI.Domain.Entity;
 using ZooMemoryAPI.Domain.Error;
+using ZooMemoryAPI.Mapper;
+using ZooMemoryAPI.Repository;
 
 namespace ZooMemoryAPI.Service.Implementations;
 
@@ -26,7 +25,7 @@ public class AnimalService(
             .Select(mapper.FromEntity);
 
     public async Task<Animal> AddAnimalAsync(CreateAnimal createAnimal) =>
-        await animalRepository .CreateAsync(mapper.FromDto(createAnimal.ToAnimal()))
+        await animalRepository.CreateAsync(mapper.FromDto(createAnimal.ToAnimal()))
             .Select(mapper.FromEntity);
 
     public async Task<Boolean> DeleteAnimalAsync(Guid uuid) =>
